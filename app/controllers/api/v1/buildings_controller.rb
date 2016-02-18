@@ -4,7 +4,7 @@ class Api::V1::BuildingsController < ApplicationController
   end
 
   def create
-    building = Building.create_from_ember(building_params)
+    building = Building.where(name: params[:building][:name]).first_or_create
     render json: building
   end
 
