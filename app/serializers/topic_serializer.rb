@@ -1,3 +1,3 @@
 class TopicSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :building_id, :title, :description, :created_at, :updated_at 
 end
