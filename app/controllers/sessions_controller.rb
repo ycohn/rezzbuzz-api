@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         token: user.authentication_token,
         email: user.email
       }
-      render json: data, status: 201
+      render json: data, status: 201 and return
     end
   end
 
