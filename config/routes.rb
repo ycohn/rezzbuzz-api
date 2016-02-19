@@ -7,4 +7,7 @@ Rails.application.routes.draw do
       resources :topics
     end
   end
+
+  post '/users/sign_in', to: "sessions#create"
+
 end
