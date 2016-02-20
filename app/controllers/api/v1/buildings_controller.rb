@@ -4,7 +4,16 @@ class Api::V1::BuildingsController < ApplicationController
   end
 
   def create
-    building = Building.where(name: params[:building][:name]).first_or_create
+    building = Building.new(building_params)
+    if building.save
+      render json: building
+    else
+     render json: {errors: building.errors}, status: :unprocessable_entity
+   end
+  end
+
+  def new
+    building = Building.new
     render json: building
   end
 
