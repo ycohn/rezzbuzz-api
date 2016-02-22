@@ -1,9 +1,17 @@
 class Api::V1::MessagesController < ApplicationController
 
+  def new
+    message = Message.new
+    render json: message
+  end
 
     def create
-      message = Message.create_from_ember(message_params)
-      render json: message
+      message = Message.new(message_params)
+      if message.save
+        render json: message
+      else
+        render json: {errors: topic.errors}, status: :unprocessable_entity
+      end
     end
 
     def show
