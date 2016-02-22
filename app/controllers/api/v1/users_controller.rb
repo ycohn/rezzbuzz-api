@@ -1,7 +1,12 @@
 class Api::V1::UsersController < ApplicationController
 
+  def new
+    user = User.new
+    render json: user
+  end
+
   def create
-    user = User.create_from_ember(user_params)
+    user = User.create(user_params)
     render json: user
   end
 
