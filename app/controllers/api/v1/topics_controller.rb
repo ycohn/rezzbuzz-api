@@ -1,8 +1,22 @@
 class Api::V1::TopicsController < ApplicationController
 
-  def create
-    topic = Topic.create_from_ember(topic_params)
+  def new
+    topic = Topic.new
     render json: topic
+  end
+
+  def index
+    render json: Topic.all
+    
+  end
+  
+  def create
+    topic = Topic.new(topic_params)
+    if topic.save
+      render json: topic
+    else
+      render json: {errors: topic.errors}, status: :unprocessable_entity
+    end
   end
 
   def show
