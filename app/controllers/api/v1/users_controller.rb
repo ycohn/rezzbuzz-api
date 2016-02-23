@@ -10,6 +10,10 @@ class Api::V1::UsersController < ApplicationController
     render json: user
   end
 
+  def me
+    render json: current_user
+  end
+
   def show
     render json: User.find(params[:id])
   end
@@ -26,9 +30,14 @@ class Api::V1::UsersController < ApplicationController
     render nothing: true
   end
 
+  def index
+    user = authenticate!
+    render json: user
+  end
+
   private
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :password_digest, :email, :bio, :picture, :created_at, :updated_at)
+    params.require(:user).permit(:firstname, :lastname, :password, :password_confirmation, :email, :bio, :picture, :created_at, :updated_at)
   end
 
 
