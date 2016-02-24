@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :messages
       resources :topics
       resources :user_buildings
+      resources :subscriptions
     end
   end
 
