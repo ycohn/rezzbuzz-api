@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
   # before_action :authenticate!
 
   def current_user
+
     User.find_by(authentication_token: the_auth_token)
   end
 
@@ -21,8 +22,12 @@ class ApplicationController < ActionController::API
   end
 
   def the_auth_token
-    authenticate_with_http_token do |token, options|
-      return token
+    if !request.headers["HTTP_AUTH_TOKEN"]
+      authenticate_with_http_token do |token, options|
+        return token
+      end
+    else
+      request.headers["HTTP_AUTH_TOKEN"]
     end
   end
 

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get "users/me", to: "users#me"
+      delete "user_buildings/:id/destroy", to: "user_buildings#destroy"
       resources :users
       resources :buildings
       resources :messages
