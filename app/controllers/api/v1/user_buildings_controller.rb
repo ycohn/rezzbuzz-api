@@ -6,8 +6,8 @@ class Api::V1::UserBuildingsController < ApplicationController
       user_building.save
     else
       user_building = UserBuilding.find_by(user_id: current_user.id, building_id: params[:user_building][:building_id])
-      render json: user_building
     end
+    render json: user_building
   end
 
   def show
